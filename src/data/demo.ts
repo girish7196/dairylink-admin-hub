@@ -245,8 +245,8 @@ function seeded(seed: number) {
 const rnd = seeded(42);
 
 export const farmers: Farmer[] = Array.from({ length: 48 }, (_, i) => {
-  const [village, district, centreId] = villages[i % villages.length];
-  const name = `${firstNames[i % firstNames.length]} ${lastNames[(i * 5) % lastNames.length]}`;
+  const [village, district, centreId] = villages[i % villages.length]!;
+  const name = `${firstNames[i % firstNames.length]!} ${lastNames[(i * 5) % lastNames.length]!}`;
   const cows = Math.floor(rnd() * 8) + 1;
   const buffaloes = Math.floor(rnd() * 5);
   const status: Status = i % 17 === 0 ? "inactive" : i % 23 === 0 ? "suspended" : "active";
@@ -260,9 +260,9 @@ export const farmers: Farmer[] = Array.from({ length: 48 }, (_, i) => {
     centreId,
     cows,
     buffaloes,
-    bankName: banks[i % banks.length],
+    bankName: banks[i % banks.length]!,
     accountNumber: `XXXXXX${String(1000 + i * 7).slice(-4)}`,
-    ifsc: ["MAHB0000521", "SBIN0001234", "IBKL0000289", "HDFC0000912"][i % 4],
+    ifsc: ["MAHB0000521", "SBIN0001234", "IBKL0000289", "HDFC0000912"][i % 4]!,
     status,
     joinedOn: `202${3 + (i % 3)}-${String((i % 12) + 1).padStart(2, "0")}-${String((i % 27) + 1).padStart(2, "0")}`,
     avgDailyLitres: Number((cows * 6.4 + buffaloes * 5.1 + rnd() * 4).toFixed(1)),
@@ -344,7 +344,7 @@ export const collections: Collection[] = (() => {
     for (const shift of ["morning", "evening"] as Shift[]) {
       const count = shift === "morning" ? 22 : 16;
       for (let i = 0; i < count; i++) {
-        const farmer = farmers[(day * 7 + i * 3 + (shift === "evening" ? 5 : 0)) % farmers.length];
+        const farmer = farmers[(day * 7 + i * 3 + (shift === "evening" ? 5 : 0)) % farmers.length]!;
         if (farmer.status !== "active") continue;
         const milkType: MilkType = farmer.buffaloes > farmer.cows ? "buffalo" : "cow";
         const rateRow = currentRate(milkType);
@@ -399,7 +399,7 @@ export const qualityTests: QualityTest[] = collections.slice(0, 120).map((c, i) 
     fat: c.fat,
     snf: c.snf,
     status,
-    testedBy: ["Sunita Pawar", "Ganesh Shinde", "Kavita Deshmukh"][i % 3],
+    testedBy: ["Sunita Pawar", "Ganesh Shinde", "Kavita Deshmukh"][i % 3]!,
   };
 });
 
@@ -561,7 +561,7 @@ export function paymentTrend() {
   const months = ["Apr", "May", "Jun", "Jul", "Aug", "Sep"];
   const base = [812000, 868500, 905300, 874200, 941800, 623400];
   const pend = [42000, 38500, 51200, 33800, 47600, 118900];
-  return months.map((m, i) => ({ label: m, paid: base[i], pending: pend[i] }));
+  return months.map((m, i) => ({ label: m, paid: base[i]!, pending: pend[i]! }));
 }
 
 export function qualityBreakdown() {

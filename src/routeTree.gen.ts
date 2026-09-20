@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
+import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,34 +29,43 @@ const FarmersIndexRoute = FarmersIndexRouteImport.update({
   path: '/farmers/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FarmersFarmerIdRoute = FarmersFarmerIdRouteImport.update({
+  id: '/farmers/$farmerId',
+  path: '/farmers/$farmerId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers': typeof FarmersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/farmers/'
+  fullPaths: '/' | '/login' | '/farmers/$farmerId' | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/farmers'
-  id: '__root__' | '/' | '/login' | '/farmers/'
+  to: '/' | '/login' | '/farmers/$farmerId' | '/farmers'
+  id: '__root__' | '/' | '/login' | '/farmers/$farmerId' | '/farmers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
   FarmersIndexRoute: typeof FarmersIndexRoute
 }
 
@@ -82,12 +92,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FarmersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/farmers/$farmerId': {
+      id: '/farmers/$farmerId'
+      path: '/farmers/$farmerId'
+      fullPath: '/farmers/$farmerId'
+      preLoaderRoute: typeof FarmersFarmerIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  FarmersFarmerIdRoute: FarmersFarmerIdRoute,
   FarmersIndexRoute: FarmersIndexRoute,
 }
 export const routeTree = rootRouteImport

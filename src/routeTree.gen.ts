@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
 import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
@@ -17,6 +18,11 @@ import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -37,12 +43,14 @@ const FarmersFarmerIdRoute = FarmersFarmerIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers': typeof FarmersIndexRoute
@@ -50,20 +58,28 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/farmers/$farmerId' | '/farmers/'
+  fullPaths: '/' | '/collection' | '/login' | '/farmers/$farmerId' | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/farmers/$farmerId' | '/farmers'
-  id: '__root__' | '/' | '/login' | '/farmers/$farmerId' | '/farmers/'
+  to: '/' | '/collection' | '/login' | '/farmers/$farmerId' | '/farmers'
+  id:
+    | '__root__'
+    | '/'
+    | '/collection'
+    | '/login'
+    | '/farmers/$farmerId'
+    | '/farmers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CollectionRoute: typeof CollectionRoute
   LoginRoute: typeof LoginRoute
   FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
   FarmersIndexRoute: typeof FarmersIndexRoute
@@ -76,6 +92,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -104,6 +127,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CollectionRoute: CollectionRoute,
   LoginRoute: LoginRoute,
   FarmersFarmerIdRoute: FarmersFarmerIdRoute,
   FarmersIndexRoute: FarmersIndexRoute,

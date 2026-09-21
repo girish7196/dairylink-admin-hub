@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as QualityRouteImport } from './routes/quality'
+import { Route as RatesRouteImport } from './routes/rates'
 import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
 import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
 
@@ -19,9 +23,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CollectionRoute = CollectionRouteImport.update({
+  id: '/collection',
+  path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentsRoute = PaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QualityRoute = QualityRouteImport.update({
+  id: '/quality',
+  path: '/quality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RatesRoute = RatesRouteImport.update({
+  id: '/rates',
+  path: '/rates',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FarmersIndexRoute = FarmersIndexRouteImport.update({
@@ -37,34 +61,75 @@ const FarmersFarmerIdRoute = FarmersFarmerIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
+  '/payments': typeof PaymentsRoute
+  '/quality': typeof QualityRoute
+  '/rates': typeof RatesRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
+  '/payments': typeof PaymentsRoute
+  '/quality': typeof QualityRoute
+  '/rates': typeof RatesRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers': typeof FarmersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
+  '/payments': typeof PaymentsRoute
+  '/quality': typeof QualityRoute
+  '/rates': typeof RatesRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/farmers/$farmerId' | '/farmers/'
+  fullPaths:
+    | '/'
+    | '/collection'
+    | '/login'
+    | '/payments'
+    | '/quality'
+    | '/rates'
+    | '/farmers/$farmerId'
+    | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/farmers/$farmerId' | '/farmers'
-  id: '__root__' | '/' | '/login' | '/farmers/$farmerId' | '/farmers/'
+  to:
+    | '/'
+    | '/collection'
+    | '/login'
+    | '/payments'
+    | '/quality'
+    | '/rates'
+    | '/farmers/$farmerId'
+    | '/farmers'
+  id:
+    | '__root__'
+    | '/'
+    | '/collection'
+    | '/login'
+    | '/payments'
+    | '/quality'
+    | '/rates'
+    | '/farmers/$farmerId'
+    | '/farmers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CollectionRoute: typeof CollectionRoute
   LoginRoute: typeof LoginRoute
+  PaymentsRoute: typeof PaymentsRoute
+  QualityRoute: typeof QualityRoute
+  RatesRoute: typeof RatesRoute
   FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
   FarmersIndexRoute: typeof FarmersIndexRoute
 }
@@ -78,11 +143,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/collection': {
+      id: '/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payments': {
+      id: '/payments'
+      path: '/payments'
+      fullPath: '/payments'
+      preLoaderRoute: typeof PaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quality': {
+      id: '/quality'
+      path: '/quality'
+      fullPath: '/quality'
+      preLoaderRoute: typeof QualityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rates': {
+      id: '/rates'
+      path: '/rates'
+      fullPath: '/rates'
+      preLoaderRoute: typeof RatesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/farmers/': {
@@ -104,7 +197,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CollectionRoute: CollectionRoute,
   LoginRoute: LoginRoute,
+  PaymentsRoute: PaymentsRoute,
+  QualityRoute: QualityRoute,
+  RatesRoute: RatesRoute,
   FarmersFarmerIdRoute: FarmersFarmerIdRoute,
   FarmersIndexRoute: FarmersIndexRoute,
 }

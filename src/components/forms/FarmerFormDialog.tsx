@@ -22,7 +22,7 @@ export function FarmerFormDialog({
       description="Farmer records are shared with the DairyLink farmer app."
       submitLabel={mode === "add" ? "Add farmer" : "Save changes"}
       onSubmit={onSubmit}
-      initialValues={initialValues}
+      initialValues={initialValues ?? {}}
       footerNote="Demo mode — changes are not saved."
       fields={[
         { name: "code", label: "Farmer code", placeholder: "DL-1049", required: true },

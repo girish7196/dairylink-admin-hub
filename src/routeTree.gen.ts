@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PaymentsRouteImport } from './routes/payments'
+import { Route as QualityRouteImport } from './routes/quality'
+import { Route as RatesRouteImport } from './routes/rates'
 import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
 import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
 
@@ -30,6 +33,21 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaymentsRoute = PaymentsRouteImport.update({
+  id: '/payments',
+  path: '/payments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QualityRoute = QualityRouteImport.update({
+  id: '/quality',
+  path: '/quality',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RatesRoute = RatesRouteImport.update({
+  id: '/rates',
+  path: '/rates',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FarmersIndexRoute = FarmersIndexRouteImport.update({
   id: '/farmers/',
   path: '/farmers/',
@@ -45,6 +63,9 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
+  '/payments': typeof PaymentsRoute
+  '/quality': typeof QualityRoute
+  '/rates': typeof RatesRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
@@ -52,6 +73,9 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
+  '/payments': typeof PaymentsRoute
+  '/quality': typeof QualityRoute
+  '/rates': typeof RatesRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers': typeof FarmersIndexRoute
 }
@@ -60,19 +84,41 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/collection': typeof CollectionRoute
   '/login': typeof LoginRoute
+  '/payments': typeof PaymentsRoute
+  '/quality': typeof QualityRoute
+  '/rates': typeof RatesRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/collection' | '/login' | '/farmers/$farmerId' | '/farmers/'
+  fullPaths:
+    | '/'
+    | '/collection'
+    | '/login'
+    | '/payments'
+    | '/quality'
+    | '/rates'
+    | '/farmers/$farmerId'
+    | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/collection' | '/login' | '/farmers/$farmerId' | '/farmers'
+  to:
+    | '/'
+    | '/collection'
+    | '/login'
+    | '/payments'
+    | '/quality'
+    | '/rates'
+    | '/farmers/$farmerId'
+    | '/farmers'
   id:
     | '__root__'
     | '/'
     | '/collection'
     | '/login'
+    | '/payments'
+    | '/quality'
+    | '/rates'
     | '/farmers/$farmerId'
     | '/farmers/'
   fileRoutesById: FileRoutesById
@@ -81,6 +127,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CollectionRoute: typeof CollectionRoute
   LoginRoute: typeof LoginRoute
+  PaymentsRoute: typeof PaymentsRoute
+  QualityRoute: typeof QualityRoute
+  RatesRoute: typeof RatesRoute
   FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
   FarmersIndexRoute: typeof FarmersIndexRoute
 }
@@ -108,6 +157,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/payments': {
+      id: '/payments'
+      path: '/payments'
+      fullPath: '/payments'
+      preLoaderRoute: typeof PaymentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quality': {
+      id: '/quality'
+      path: '/quality'
+      fullPath: '/quality'
+      preLoaderRoute: typeof QualityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rates': {
+      id: '/rates'
+      path: '/rates'
+      fullPath: '/rates'
+      preLoaderRoute: typeof RatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/farmers/': {
       id: '/farmers/'
       path: '/farmers'
@@ -129,6 +199,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CollectionRoute: CollectionRoute,
   LoginRoute: LoginRoute,
+  PaymentsRoute: PaymentsRoute,
+  QualityRoute: QualityRoute,
+  RatesRoute: RatesRoute,
   FarmersFarmerIdRoute: FarmersFarmerIdRoute,
   FarmersIndexRoute: FarmersIndexRoute,
 }

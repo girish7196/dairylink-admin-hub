@@ -10,11 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CentresRouteImport } from './routes/centres'
 import { Route as CollectionRouteImport } from './routes/collection'
+import { Route as EmployeesRouteImport } from './routes/employees'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PaymentsRouteImport } from './routes/payments'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as RatesRouteImport } from './routes/rates'
+import { Route as ReceiptsRouteImport } from './routes/receipts'
 import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
 import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
 
@@ -23,9 +26,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CentresRoute = CentresRouteImport.update({
+  id: '/centres',
+  path: '/centres',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CollectionRoute = CollectionRouteImport.update({
   id: '/collection',
   path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmployeesRoute = EmployeesRouteImport.update({
+  id: '/employees',
+  path: '/employees',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -48,6 +61,11 @@ const RatesRoute = RatesRouteImport.update({
   path: '/rates',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReceiptsRoute = ReceiptsRouteImport.update({
+  id: '/receipts',
+  path: '/receipts',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FarmersIndexRoute = FarmersIndexRouteImport.update({
   id: '/farmers/',
   path: '/farmers/',
@@ -61,32 +79,41 @@ const FarmersFarmerIdRoute = FarmersFarmerIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/centres': typeof CentresRoute
   '/collection': typeof CollectionRoute
+  '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
   '/payments': typeof PaymentsRoute
   '/quality': typeof QualityRoute
   '/rates': typeof RatesRoute
+  '/receipts': typeof ReceiptsRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/centres': typeof CentresRoute
   '/collection': typeof CollectionRoute
+  '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
   '/payments': typeof PaymentsRoute
   '/quality': typeof QualityRoute
   '/rates': typeof RatesRoute
+  '/receipts': typeof ReceiptsRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers': typeof FarmersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/centres': typeof CentresRoute
   '/collection': typeof CollectionRoute
+  '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
   '/payments': typeof PaymentsRoute
   '/quality': typeof QualityRoute
   '/rates': typeof RatesRoute
+  '/receipts': typeof ReceiptsRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
@@ -94,42 +121,54 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/centres'
     | '/collection'
+    | '/employees'
     | '/login'
     | '/payments'
     | '/quality'
     | '/rates'
+    | '/receipts'
     | '/farmers/$farmerId'
     | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/centres'
     | '/collection'
+    | '/employees'
     | '/login'
     | '/payments'
     | '/quality'
     | '/rates'
+    | '/receipts'
     | '/farmers/$farmerId'
     | '/farmers'
   id:
     | '__root__'
     | '/'
+    | '/centres'
     | '/collection'
+    | '/employees'
     | '/login'
     | '/payments'
     | '/quality'
     | '/rates'
+    | '/receipts'
     | '/farmers/$farmerId'
     | '/farmers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CentresRoute: typeof CentresRoute
   CollectionRoute: typeof CollectionRoute
+  EmployeesRoute: typeof EmployeesRoute
   LoginRoute: typeof LoginRoute
   PaymentsRoute: typeof PaymentsRoute
   QualityRoute: typeof QualityRoute
   RatesRoute: typeof RatesRoute
+  ReceiptsRoute: typeof ReceiptsRoute
   FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
   FarmersIndexRoute: typeof FarmersIndexRoute
 }
@@ -143,11 +182,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/centres': {
+      id: '/centres'
+      path: '/centres'
+      fullPath: '/centres'
+      preLoaderRoute: typeof CentresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/collection': {
       id: '/collection'
       path: '/collection'
       fullPath: '/collection'
       preLoaderRoute: typeof CollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/employees': {
+      id: '/employees'
+      path: '/employees'
+      fullPath: '/employees'
+      preLoaderRoute: typeof EmployeesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -178,6 +231,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RatesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/receipts': {
+      id: '/receipts'
+      path: '/receipts'
+      fullPath: '/receipts'
+      preLoaderRoute: typeof ReceiptsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/farmers/': {
       id: '/farmers/'
       path: '/farmers'
@@ -197,11 +257,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CentresRoute: CentresRoute,
   CollectionRoute: CollectionRoute,
+  EmployeesRoute: EmployeesRoute,
   LoginRoute: LoginRoute,
   PaymentsRoute: PaymentsRoute,
   QualityRoute: QualityRoute,
   RatesRoute: RatesRoute,
+  ReceiptsRoute: ReceiptsRoute,
   FarmersFarmerIdRoute: FarmersFarmerIdRoute,
   FarmersIndexRoute: FarmersIndexRoute,
 }

@@ -14,10 +14,13 @@ import { Route as CentresRouteImport } from './routes/centres'
 import { Route as CollectionRouteImport } from './routes/collection'
 import { Route as EmployeesRouteImport } from './routes/employees'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as PaymentsRouteImport } from './routes/payments'
 import { Route as QualityRouteImport } from './routes/quality'
 import { Route as RatesRouteImport } from './routes/rates'
 import { Route as ReceiptsRouteImport } from './routes/receipts'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
 import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
 
@@ -46,6 +49,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PaymentsRoute = PaymentsRouteImport.update({
   id: '/payments',
   path: '/payments',
@@ -66,6 +74,16 @@ const ReceiptsRoute = ReceiptsRouteImport.update({
   path: '/receipts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FarmersIndexRoute = FarmersIndexRouteImport.update({
   id: '/farmers/',
   path: '/farmers/',
@@ -83,10 +101,13 @@ export interface FileRoutesByFullPath {
   '/collection': typeof CollectionRoute
   '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/quality': typeof QualityRoute
   '/rates': typeof RatesRoute
   '/receipts': typeof ReceiptsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
@@ -96,10 +117,13 @@ export interface FileRoutesByTo {
   '/collection': typeof CollectionRoute
   '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/quality': typeof QualityRoute
   '/rates': typeof RatesRoute
   '/receipts': typeof ReceiptsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers': typeof FarmersIndexRoute
 }
@@ -110,10 +134,13 @@ export interface FileRoutesById {
   '/collection': typeof CollectionRoute
   '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
+  '/notifications': typeof NotificationsRoute
   '/payments': typeof PaymentsRoute
   '/quality': typeof QualityRoute
   '/rates': typeof RatesRoute
   '/receipts': typeof ReceiptsRoute
+  '/reports': typeof ReportsRoute
+  '/settings': typeof SettingsRoute
   '/farmers/$farmerId': typeof FarmersFarmerIdRoute
   '/farmers/': typeof FarmersIndexRoute
 }
@@ -125,10 +152,13 @@ export interface FileRouteTypes {
     | '/collection'
     | '/employees'
     | '/login'
+    | '/notifications'
     | '/payments'
     | '/quality'
     | '/rates'
     | '/receipts'
+    | '/reports'
+    | '/settings'
     | '/farmers/$farmerId'
     | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
@@ -138,10 +168,13 @@ export interface FileRouteTypes {
     | '/collection'
     | '/employees'
     | '/login'
+    | '/notifications'
     | '/payments'
     | '/quality'
     | '/rates'
     | '/receipts'
+    | '/reports'
+    | '/settings'
     | '/farmers/$farmerId'
     | '/farmers'
   id:
@@ -151,10 +184,13 @@ export interface FileRouteTypes {
     | '/collection'
     | '/employees'
     | '/login'
+    | '/notifications'
     | '/payments'
     | '/quality'
     | '/rates'
     | '/receipts'
+    | '/reports'
+    | '/settings'
     | '/farmers/$farmerId'
     | '/farmers/'
   fileRoutesById: FileRoutesById
@@ -165,10 +201,13 @@ export interface RootRouteChildren {
   CollectionRoute: typeof CollectionRoute
   EmployeesRoute: typeof EmployeesRoute
   LoginRoute: typeof LoginRoute
+  NotificationsRoute: typeof NotificationsRoute
   PaymentsRoute: typeof PaymentsRoute
   QualityRoute: typeof QualityRoute
   RatesRoute: typeof RatesRoute
   ReceiptsRoute: typeof ReceiptsRoute
+  ReportsRoute: typeof ReportsRoute
+  SettingsRoute: typeof SettingsRoute
   FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
   FarmersIndexRoute: typeof FarmersIndexRoute
 }
@@ -210,6 +249,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/payments': {
       id: '/payments'
       path: '/payments'
@@ -238,6 +284,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReceiptsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/farmers/': {
       id: '/farmers/'
       path: '/farmers'
@@ -261,10 +321,13 @@ const rootRouteChildren: RootRouteChildren = {
   CollectionRoute: CollectionRoute,
   EmployeesRoute: EmployeesRoute,
   LoginRoute: LoginRoute,
+  NotificationsRoute: NotificationsRoute,
   PaymentsRoute: PaymentsRoute,
   QualityRoute: QualityRoute,
   RatesRoute: RatesRoute,
   ReceiptsRoute: ReceiptsRoute,
+  ReportsRoute: ReportsRoute,
+  SettingsRoute: SettingsRoute,
   FarmersFarmerIdRoute: FarmersFarmerIdRoute,
   FarmersIndexRoute: FarmersIndexRoute,
 }

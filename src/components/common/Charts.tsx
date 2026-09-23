@@ -36,12 +36,14 @@ const tooltipStyle = {
 
 export function CollectionAreaChart({
   data,
+  height = 280,
 }: {
   data: { label: string; morning: number; evening: number }[];
+  height?: number;
 }) {
   return (
-    <ResponsiveContainer width="100%" height={280}>
-      <AreaChart data={data} margin={{ left: -18, right: 6, top: 8 }}>
+    <ResponsiveContainer width="100%" height={height}>
+      <AreaChart data={data} margin={{ left: 4, right: 6, top: 8 }}>
         <defs>
           <linearGradient id="gMorning" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="var(--chart-1)" stopOpacity={0.45} />
@@ -80,11 +82,13 @@ export function CollectionAreaChart({
 
 export function PaymentBarChart({
   data,
+  height = 280,
 }: {
   data: { label: string; paid: number; pending: number }[];
+  height?: number;
 }) {
   return (
-    <ResponsiveContainer width="100%" height={280}>
+    <ResponsiveContainer width="100%" height={height}>
       <BarChart data={data} margin={{ left: -6, right: 6, top: 8 }} barGap={4}>
         <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
         <XAxis dataKey="label" {...axis} />

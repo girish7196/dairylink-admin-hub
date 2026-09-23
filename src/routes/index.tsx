@@ -138,7 +138,7 @@ function Dashboard() {
           description="Litres collected per shift over the last 14 days"
           className="xl:col-span-2"
         >
-          <CollectionAreaChart data={trend} />
+          <CollectionAreaChart data={trend} height={420} />
         </SectionCard>
 
         <SectionCard title="Recent notifications" description="Latest broadcasts to farmers">
@@ -168,7 +168,7 @@ function Dashboard() {
           description="Paid vs pending payouts by month"
           className="xl:col-span-2"
         >
-          <PaymentBarChart data={paymentTrend()} />
+          <PaymentBarChart data={paymentTrend()} height={400} />
         </SectionCard>
 
         <SectionCard title="Recent payments" description="Latest farmer payouts">

@@ -169,16 +169,16 @@ function NotificationsPage() {
           setItems((prev) => [
             {
               id: `n${prev.length + 1}`,
-              title: values.title ?? "Untitled notification",
-              message: values.message ?? "",
-              type: (values.type as "general") ?? "general",
+              title: values["title"] ?? "Untitled notification",
+              message: values["message"] ?? "",
+              type: (values["type"] as "general") ?? "general",
               date: new Date().toISOString().slice(0, 10),
               read: false,
               audience:
-                values.audience === "all"
+                values["audience"] === "all"
                   ? "All farmers"
-                  : (centres.find((c) => c.id === values.audience)?.name ??
-                    farmers.find((f) => f.id === values.audience)?.name ??
+                  : (centres.find((c) => c.id === values["audience"])?.name ??
+                    farmers.find((f) => f.id === values["audience"])?.name ??
                     "Selected farmers"),
             },
             ...prev,

@@ -52,17 +52,19 @@ export function EntityFormDialog({
   fields: Field[];
   initialValues?: FormValues;
   submitLabel?: string;
-  onSubmit: (values: FormValues) => void;
+  onSubmit: (values: FormValues) => void | Promise<void>;
   footerNote?: ReactNode;
 }) {
   const [values, setValues] = useState<FormValues>(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [saving, setSaving] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (open) {
       setValues(initialValues);
       setErrors({});
+      setSubmitError(null);
       setSaving(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,8 +73,10 @@ export function EntityFormDialog({
   const set = (name: string, value: string) =>
     setValues((v) => ({ ...v, [name]: value }));
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (saving) return;
+    setSubmitError(null);
     const next: Record<string, string> = {};
     fields.forEach((f) => {
       if (f.required && !String(values[f.name] ?? "").trim()) {
@@ -82,15 +86,18 @@ export function EntityFormDialog({
     setErrors(next);
     if (Object.keys(next).length) return;
     setSaving(true);
-    setTimeout(() => {
-      setSaving(false);
-      onSubmit(values);
+    try {
+      await onSubmit(values);
       onOpenChange(false);
-    }, 650);
+    } catch (error) {
+      setSubmitError(error instanceof Error ? error.message : "Could not save. Please try again.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={(value) => { if (!saving) onOpenChange(value); }}>
       <DialogContent className="max-h-[90vh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
@@ -145,11 +152,12 @@ export function EntityFormDialog({
             </div>
           ))}
 
+          {submitError && <p role="alert" className="text-sm text-destructive sm:col-span-2">{submitError}</p>}
           <DialogFooter className="sm:col-span-2">
             {footerNote && (
               <p className="mr-auto self-center text-xs text-muted-foreground">{footerNote}</p>
             )}
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+            <Button type="button" variant="outline" disabled={saving} onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
             <Button type="submit" disabled={saving}>

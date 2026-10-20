@@ -52,7 +52,7 @@ export function EntityFormDialog({
   fields: Field[];
   initialValues?: FormValues;
   submitLabel?: string;
-  onSubmit: (values: FormValues) => void | Promise<void>;
+  onSubmit: (values: FormValues) => unknown | Promise<unknown>;
   footerNote?: ReactNode;
 }) {
   const [values, setValues] = useState<FormValues>(initialValues);

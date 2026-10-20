@@ -8,8 +8,8 @@ export function getExternalSupabase(): SupabaseClient {
     throw new Error("Milk rates are available after the page finishes loading.");
   }
   if (browserClient) return browserClient;
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
+  const url = import.meta.env['VITE_SUPABASE_URL'];
+  const key = import.meta.env['VITE_SUPABASE_ANON_KEY'];
   if (!url || !key) {
     throw new Error(
       "Milk rates are not connected. Configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY for your existing project, then reload.",

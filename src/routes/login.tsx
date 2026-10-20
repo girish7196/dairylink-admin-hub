@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import { getExternalSupabase } from "@/lib/external-supabase";
 import {
   Dialog,
   DialogContent,
@@ -49,11 +50,21 @@ function LoginPage() {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      toast.success("Signed in", { description: "Welcome back to DairyLink Admin." });
-      navigate({ to: "/" });
-    }, 900);
+    void (async () => {
+      try {
+        const { error: authError } = await getExternalSupabase().auth.signInWithPassword({ email, password });
+        if (authError) {
+          setError(authError.message);
+          return;
+        }
+        toast.success("Signed in", { description: "Welcome back to DairyLink Admin." });
+        navigate({ to: "/" });
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Sign in failed. Check your connection and try again.");
+      } finally {
+        setLoading(false);
+      }
+    })();
   }
 
   return (

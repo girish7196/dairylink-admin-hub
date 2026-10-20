@@ -9,10 +9,12 @@ export function getExternalSupabase(): SupabaseClient {
   }
   if (browserClient) return browserClient;
   const url = import.meta.env['VITE_SUPABASE_URL'];
-  const key = import.meta.env['VITE_SUPABASE_ANON_KEY'];
+  // The connected project supplies its public key as VITE_SUPABASE_PUBLISHABLE_KEY;
+  // VITE_SUPABASE_ANON_KEY is accepted as a legacy alias.
+  const key = import.meta.env['VITE_SUPABASE_ANON_KEY'] ?? import.meta.env['VITE_SUPABASE_PUBLISHABLE_KEY'];
   if (!url || !key) {
     throw new Error(
-      "Milk rates are not connected. Configure VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY for your existing project, then reload.",
+      "Milk rates are not connected. Configure VITE_SUPABASE_URL and the project's public key for your existing project, then reload.",
     );
   }
   // Never accept an explicitly privileged JWT or secret key in browser config.

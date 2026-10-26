@@ -27,7 +27,7 @@ import {
 } from "@/data/demo";
 import { IndianRupee, Milk, Sunrise, Moon } from "lucide-react";
 
-export const Route = createFileRoute("/collection")({
+export const Route = createFileRoute("/_authenticated/collection")({
   head: () => ({
     meta: [
       { title: "Milk Collection — DairyLink Admin" },

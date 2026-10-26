@@ -22,7 +22,7 @@ import {
   type QualityTest,
 } from "@/data/demo";
 
-export const Route = createFileRoute("/quality")({
+export const Route = createFileRoute("/_authenticated/quality")({
   head: () => ({
     meta: [
       { title: "Quality Testing — DairyLink Admin" },

@@ -35,7 +35,7 @@ import {
   titleCase,
 } from "@/data/demo";
 
-export const Route = createFileRoute("/reports")({
+export const Route = createFileRoute("/_authenticated/reports")({
   head: () => ({
     meta: [
       { title: "Reports — DairyLink Admin" },

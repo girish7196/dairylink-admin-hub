@@ -27,7 +27,7 @@ import {
   type Receipt,
 } from "@/data/demo";
 
-export const Route = createFileRoute("/receipts")({
+export const Route = createFileRoute("/_authenticated/receipts")({
   head: () => ({
     meta: [
       { title: "Receipts — DairyLink Admin" },

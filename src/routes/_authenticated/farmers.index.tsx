@@ -11,7 +11,7 @@ import { FarmerFormDialog } from "@/components/forms/FarmerFormDialog";
 import { Button } from "@/components/ui/button";
 import { centreName, centres, farmers, type Farmer } from "@/data/demo";
 
-export const Route = createFileRoute("/farmers/")({
+export const Route = createFileRoute("/_authenticated/farmers/")({
   head: () => ({
     meta: [
       { title: "Farmers — DairyLink Admin" },

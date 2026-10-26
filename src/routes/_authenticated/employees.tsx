@@ -19,7 +19,7 @@ import {
   type Employee,
 } from "@/data/demo";
 
-export const Route = createFileRoute("/employees")({
+export const Route = createFileRoute("/_authenticated/employees")({
   head: () => ({
     meta: [
       { title: "Employees — DairyLink Admin" },

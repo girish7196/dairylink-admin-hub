@@ -12,7 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { insertMilkRate, latestEffectiveRate, localDate, milkRatesQueryOptions, type MilkRateRow } from "@/data/milk-rates";
 
-export const Route = createFileRoute("/rates")({
+export const Route = createFileRoute("/_authenticated/rates")({
   head: () => ({
     meta: [
       { title: "Milk Rates — DairyLink Admin" },

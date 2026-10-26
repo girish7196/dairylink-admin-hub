@@ -9,149 +9,151 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as CentresRouteImport } from './routes/centres'
-import { Route as CollectionRouteImport } from './routes/collection'
-import { Route as EmployeesRouteImport } from './routes/employees'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as PaymentsRouteImport } from './routes/payments'
-import { Route as QualityRouteImport } from './routes/quality'
-import { Route as RatesRouteImport } from './routes/rates'
-import { Route as ReceiptsRouteImport } from './routes/receipts'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as FarmersIndexRouteImport } from './routes/farmers.index'
-import { Route as FarmersFarmerIdRouteImport } from './routes/farmers.$farmerId'
+import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as AuthenticatedCentresRouteImport } from './routes/_authenticated/centres'
+import { Route as AuthenticatedCollectionRouteImport } from './routes/_authenticated/collection'
+import { Route as AuthenticatedEmployeesRouteImport } from './routes/_authenticated/employees'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedPaymentsRouteImport } from './routes/_authenticated/payments'
+import { Route as AuthenticatedQualityRouteImport } from './routes/_authenticated/quality'
+import { Route as AuthenticatedRatesRouteImport } from './routes/_authenticated/rates'
+import { Route as AuthenticatedReceiptsRouteImport } from './routes/_authenticated/receipts'
+import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedFarmersIndexRouteImport } from './routes/_authenticated/farmers.index'
+import { Route as AuthenticatedFarmersFarmerIdRouteImport } from './routes/_authenticated/farmers.$farmerId'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CentresRoute = CentresRouteImport.update({
-  id: '/centres',
-  path: '/centres',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CollectionRoute = CollectionRouteImport.update({
-  id: '/collection',
-  path: '/collection',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const EmployeesRoute = EmployeesRouteImport.update({
-  id: '/employees',
-  path: '/employees',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
+const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
+  id: '/_authenticated/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PaymentsRoute = PaymentsRouteImport.update({
-  id: '/payments',
+const AuthenticatedCentresRoute = AuthenticatedCentresRouteImport.update({
+  id: '/_authenticated/centres',
+  path: '/centres',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedCollectionRoute = AuthenticatedCollectionRouteImport.update({
+  id: '/_authenticated/collection',
+  path: '/collection',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedEmployeesRoute = AuthenticatedEmployeesRouteImport.update({
+  id: '/_authenticated/employees',
+  path: '/employees',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/_authenticated/notifications',
+    path: '/notifications',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedPaymentsRoute = AuthenticatedPaymentsRouteImport.update({
+  id: '/_authenticated/payments',
   path: '/payments',
   getParentRoute: () => rootRouteImport,
 } as any)
-const QualityRoute = QualityRouteImport.update({
-  id: '/quality',
+const AuthenticatedQualityRoute = AuthenticatedQualityRouteImport.update({
+  id: '/_authenticated/quality',
   path: '/quality',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RatesRoute = RatesRouteImport.update({
-  id: '/rates',
+const AuthenticatedRatesRoute = AuthenticatedRatesRouteImport.update({
+  id: '/_authenticated/rates',
   path: '/rates',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReceiptsRoute = ReceiptsRouteImport.update({
-  id: '/receipts',
+const AuthenticatedReceiptsRoute = AuthenticatedReceiptsRouteImport.update({
+  id: '/_authenticated/receipts',
   path: '/receipts',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
+const AuthenticatedReportsRoute = AuthenticatedReportsRouteImport.update({
+  id: '/_authenticated/reports',
   path: '/reports',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/_authenticated/settings',
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
-const FarmersIndexRoute = FarmersIndexRouteImport.update({
-  id: '/farmers/',
-  path: '/farmers/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FarmersFarmerIdRoute = FarmersFarmerIdRouteImport.update({
-  id: '/farmers/$farmerId',
-  path: '/farmers/$farmerId',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const AuthenticatedFarmersIndexRoute =
+  AuthenticatedFarmersIndexRouteImport.update({
+    id: '/_authenticated/farmers/',
+    path: '/farmers/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AuthenticatedFarmersFarmerIdRoute =
+  AuthenticatedFarmersFarmerIdRouteImport.update({
+    id: '/_authenticated/farmers/$farmerId',
+    path: '/farmers/$farmerId',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/centres': typeof CentresRoute
-  '/collection': typeof CollectionRoute
-  '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
-  '/notifications': typeof NotificationsRoute
-  '/payments': typeof PaymentsRoute
-  '/quality': typeof QualityRoute
-  '/rates': typeof RatesRoute
-  '/receipts': typeof ReceiptsRoute
-  '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRoute
-  '/farmers/$farmerId': typeof FarmersFarmerIdRoute
-  '/farmers/': typeof FarmersIndexRoute
+  '/centres': typeof AuthenticatedCentresRoute
+  '/collection': typeof AuthenticatedCollectionRoute
+  '/employees': typeof AuthenticatedEmployeesRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/payments': typeof AuthenticatedPaymentsRoute
+  '/quality': typeof AuthenticatedQualityRoute
+  '/rates': typeof AuthenticatedRatesRoute
+  '/receipts': typeof AuthenticatedReceiptsRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/farmers/$farmerId': typeof AuthenticatedFarmersFarmerIdRoute
+  '/farmers/': typeof AuthenticatedFarmersIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/centres': typeof CentresRoute
-  '/collection': typeof CollectionRoute
-  '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
-  '/notifications': typeof NotificationsRoute
-  '/payments': typeof PaymentsRoute
-  '/quality': typeof QualityRoute
-  '/rates': typeof RatesRoute
-  '/receipts': typeof ReceiptsRoute
-  '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRoute
-  '/farmers/$farmerId': typeof FarmersFarmerIdRoute
-  '/farmers': typeof FarmersIndexRoute
+  '/centres': typeof AuthenticatedCentresRoute
+  '/collection': typeof AuthenticatedCollectionRoute
+  '/employees': typeof AuthenticatedEmployeesRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/payments': typeof AuthenticatedPaymentsRoute
+  '/quality': typeof AuthenticatedQualityRoute
+  '/rates': typeof AuthenticatedRatesRoute
+  '/receipts': typeof AuthenticatedReceiptsRoute
+  '/reports': typeof AuthenticatedReportsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
+  '/': typeof AuthenticatedIndexRoute
+  '/farmers/$farmerId': typeof AuthenticatedFarmersFarmerIdRoute
+  '/farmers': typeof AuthenticatedFarmersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/centres': typeof CentresRoute
-  '/collection': typeof CollectionRoute
-  '/employees': typeof EmployeesRoute
   '/login': typeof LoginRoute
-  '/notifications': typeof NotificationsRoute
-  '/payments': typeof PaymentsRoute
-  '/quality': typeof QualityRoute
-  '/rates': typeof RatesRoute
-  '/receipts': typeof ReceiptsRoute
-  '/reports': typeof ReportsRoute
-  '/settings': typeof SettingsRoute
-  '/farmers/$farmerId': typeof FarmersFarmerIdRoute
-  '/farmers/': typeof FarmersIndexRoute
+  '/_authenticated/centres': typeof AuthenticatedCentresRoute
+  '/_authenticated/collection': typeof AuthenticatedCollectionRoute
+  '/_authenticated/employees': typeof AuthenticatedEmployeesRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/payments': typeof AuthenticatedPaymentsRoute
+  '/_authenticated/quality': typeof AuthenticatedQualityRoute
+  '/_authenticated/rates': typeof AuthenticatedRatesRoute
+  '/_authenticated/receipts': typeof AuthenticatedReceiptsRoute
+  '/_authenticated/reports': typeof AuthenticatedReportsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
+  '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/farmers/$farmerId': typeof AuthenticatedFarmersFarmerIdRoute
+  '/_authenticated/farmers/': typeof AuthenticatedFarmersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
+    | '/login'
     | '/centres'
     | '/collection'
     | '/employees'
-    | '/login'
     | '/notifications'
     | '/payments'
     | '/quality'
@@ -159,15 +161,15 @@ export interface FileRouteTypes {
     | '/receipts'
     | '/reports'
     | '/settings'
+    | '/'
     | '/farmers/$farmerId'
     | '/farmers/'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
+    | '/login'
     | '/centres'
     | '/collection'
     | '/employees'
-    | '/login'
     | '/notifications'
     | '/payments'
     | '/quality'
@@ -175,73 +177,46 @@ export interface FileRouteTypes {
     | '/receipts'
     | '/reports'
     | '/settings'
+    | '/'
     | '/farmers/$farmerId'
     | '/farmers'
   id:
     | '__root__'
-    | '/'
-    | '/centres'
-    | '/collection'
-    | '/employees'
     | '/login'
-    | '/notifications'
-    | '/payments'
-    | '/quality'
-    | '/rates'
-    | '/receipts'
-    | '/reports'
-    | '/settings'
-    | '/farmers/$farmerId'
-    | '/farmers/'
+    | '/_authenticated/centres'
+    | '/_authenticated/collection'
+    | '/_authenticated/employees'
+    | '/_authenticated/notifications'
+    | '/_authenticated/payments'
+    | '/_authenticated/quality'
+    | '/_authenticated/rates'
+    | '/_authenticated/receipts'
+    | '/_authenticated/reports'
+    | '/_authenticated/settings'
+    | '/_authenticated/'
+    | '/_authenticated/farmers/$farmerId'
+    | '/_authenticated/farmers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  CentresRoute: typeof CentresRoute
-  CollectionRoute: typeof CollectionRoute
-  EmployeesRoute: typeof EmployeesRoute
   LoginRoute: typeof LoginRoute
-  NotificationsRoute: typeof NotificationsRoute
-  PaymentsRoute: typeof PaymentsRoute
-  QualityRoute: typeof QualityRoute
-  RatesRoute: typeof RatesRoute
-  ReceiptsRoute: typeof ReceiptsRoute
-  ReportsRoute: typeof ReportsRoute
-  SettingsRoute: typeof SettingsRoute
-  FarmersFarmerIdRoute: typeof FarmersFarmerIdRoute
-  FarmersIndexRoute: typeof FarmersIndexRoute
+  AuthenticatedCentresRoute: typeof AuthenticatedCentresRoute
+  AuthenticatedCollectionRoute: typeof AuthenticatedCollectionRoute
+  AuthenticatedEmployeesRoute: typeof AuthenticatedEmployeesRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedPaymentsRoute: typeof AuthenticatedPaymentsRoute
+  AuthenticatedQualityRoute: typeof AuthenticatedQualityRoute
+  AuthenticatedRatesRoute: typeof AuthenticatedRatesRoute
+  AuthenticatedReceiptsRoute: typeof AuthenticatedReceiptsRoute
+  AuthenticatedReportsRoute: typeof AuthenticatedReportsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedFarmersFarmerIdRoute: typeof AuthenticatedFarmersFarmerIdRoute
+  AuthenticatedFarmersIndexRoute: typeof AuthenticatedFarmersIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/centres': {
-      id: '/centres'
-      path: '/centres'
-      fullPath: '/centres'
-      preLoaderRoute: typeof CentresRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/collection': {
-      id: '/collection'
-      path: '/collection'
-      fullPath: '/collection'
-      preLoaderRoute: typeof CollectionRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/employees': {
-      id: '/employees'
-      path: '/employees'
-      fullPath: '/employees'
-      preLoaderRoute: typeof EmployeesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -249,87 +224,115 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/notifications': {
-      id: '/notifications'
+    '/_authenticated/': {
+      id: '/_authenticated/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/centres': {
+      id: '/_authenticated/centres'
+      path: '/centres'
+      fullPath: '/centres'
+      preLoaderRoute: typeof AuthenticatedCentresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/collection': {
+      id: '/_authenticated/collection'
+      path: '/collection'
+      fullPath: '/collection'
+      preLoaderRoute: typeof AuthenticatedCollectionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/employees': {
+      id: '/_authenticated/employees'
+      path: '/employees'
+      fullPath: '/employees'
+      preLoaderRoute: typeof AuthenticatedEmployeesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
       path: '/notifications'
       fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/payments': {
-      id: '/payments'
+    '/_authenticated/payments': {
+      id: '/_authenticated/payments'
       path: '/payments'
       fullPath: '/payments'
-      preLoaderRoute: typeof PaymentsRouteImport
+      preLoaderRoute: typeof AuthenticatedPaymentsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/quality': {
-      id: '/quality'
+    '/_authenticated/quality': {
+      id: '/_authenticated/quality'
       path: '/quality'
       fullPath: '/quality'
-      preLoaderRoute: typeof QualityRouteImport
+      preLoaderRoute: typeof AuthenticatedQualityRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/rates': {
-      id: '/rates'
+    '/_authenticated/rates': {
+      id: '/_authenticated/rates'
       path: '/rates'
       fullPath: '/rates'
-      preLoaderRoute: typeof RatesRouteImport
+      preLoaderRoute: typeof AuthenticatedRatesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/receipts': {
-      id: '/receipts'
+    '/_authenticated/receipts': {
+      id: '/_authenticated/receipts'
       path: '/receipts'
       fullPath: '/receipts'
-      preLoaderRoute: typeof ReceiptsRouteImport
+      preLoaderRoute: typeof AuthenticatedReceiptsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reports': {
-      id: '/reports'
+    '/_authenticated/reports': {
+      id: '/_authenticated/reports'
       path: '/reports'
       fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
+      preLoaderRoute: typeof AuthenticatedReportsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/settings': {
-      id: '/settings'
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/farmers/': {
-      id: '/farmers/'
+    '/_authenticated/farmers/': {
+      id: '/_authenticated/farmers/'
       path: '/farmers'
       fullPath: '/farmers/'
-      preLoaderRoute: typeof FarmersIndexRouteImport
+      preLoaderRoute: typeof AuthenticatedFarmersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/farmers/$farmerId': {
-      id: '/farmers/$farmerId'
+    '/_authenticated/farmers/$farmerId': {
+      id: '/_authenticated/farmers/$farmerId'
       path: '/farmers/$farmerId'
       fullPath: '/farmers/$farmerId'
-      preLoaderRoute: typeof FarmersFarmerIdRouteImport
+      preLoaderRoute: typeof AuthenticatedFarmersFarmerIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  CentresRoute: CentresRoute,
-  CollectionRoute: CollectionRoute,
-  EmployeesRoute: EmployeesRoute,
   LoginRoute: LoginRoute,
-  NotificationsRoute: NotificationsRoute,
-  PaymentsRoute: PaymentsRoute,
-  QualityRoute: QualityRoute,
-  RatesRoute: RatesRoute,
-  ReceiptsRoute: ReceiptsRoute,
-  ReportsRoute: ReportsRoute,
-  SettingsRoute: SettingsRoute,
-  FarmersFarmerIdRoute: FarmersFarmerIdRoute,
-  FarmersIndexRoute: FarmersIndexRoute,
+  AuthenticatedCentresRoute: AuthenticatedCentresRoute,
+  AuthenticatedCollectionRoute: AuthenticatedCollectionRoute,
+  AuthenticatedEmployeesRoute: AuthenticatedEmployeesRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedPaymentsRoute: AuthenticatedPaymentsRoute,
+  AuthenticatedQualityRoute: AuthenticatedQualityRoute,
+  AuthenticatedRatesRoute: AuthenticatedRatesRoute,
+  AuthenticatedReceiptsRoute: AuthenticatedReceiptsRoute,
+  AuthenticatedReportsRoute: AuthenticatedReportsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedFarmersFarmerIdRoute: AuthenticatedFarmersFarmerIdRoute,
+  AuthenticatedFarmersIndexRoute: AuthenticatedFarmersIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

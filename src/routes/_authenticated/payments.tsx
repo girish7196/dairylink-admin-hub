@@ -30,7 +30,7 @@ import {
   type Payment,
 } from "@/data/demo";
 
-export const Route = createFileRoute("/payments")({
+export const Route = createFileRoute("/_authenticated/payments")({
   head: () => ({
     meta: [
       { title: "Payments — DairyLink Admin" },

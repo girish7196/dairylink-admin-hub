@@ -28,7 +28,7 @@ import {
   receipts,
 } from "@/data/demo";
 
-export const Route = createFileRoute("/farmers/$farmerId")({
+export const Route = createFileRoute("/_authenticated/farmers/$farmerId")({
   loader: ({ params }) => {
     const farmer = farmerById(params.farmerId);
     if (!farmer) throw notFound();

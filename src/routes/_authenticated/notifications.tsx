@@ -18,7 +18,7 @@ import {
 } from "@/data/demo";
 import { cn } from "@/lib/utils";
 
-export const Route = createFileRoute("/notifications")({
+export const Route = createFileRoute("/_authenticated/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — DairyLink Admin" },

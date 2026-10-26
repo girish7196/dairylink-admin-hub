@@ -12,7 +12,7 @@ import { EntityFormDialog, type FormValues } from "@/components/forms/EntityForm
 import { Button } from "@/components/ui/button";
 import { centrePerformance, centres, farmers } from "@/data/demo";
 
-export const Route = createFileRoute("/centres")({
+export const Route = createFileRoute("/_authenticated/centres")({
   head: () => ({
     meta: [
       { title: "Collection Centres — DairyLink Admin" },

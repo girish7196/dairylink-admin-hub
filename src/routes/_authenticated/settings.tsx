@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { LogOut, Monitor, Moon, Sun } from "lucide-react";
 import { toast } from "sonner";
 import { AdminLayout } from "@/components/layout/AdminLayout";
@@ -44,6 +44,7 @@ const themeOptions: { value: Theme; label: string; icon: typeof Sun }[] = [
 
 function SettingsPage() {
   const { theme, setTheme } = useTheme();
+  const signOut = useAdminSignOut();
   const [language, setLanguage] = useState("en");
   const [prefs, setPrefs] = useState({
     collectionAlerts: true,
@@ -190,10 +191,8 @@ function SettingsPage() {
       </SectionCard>
 
       <SectionCard title="Session" description="You will need to sign in again to continue">
-        <Button variant="destructive" asChild>
-          <Link to="/login">
-            <LogOut className="mr-1.5 size-4" /> Log out
-          </Link>
+        <Button variant="destructive" onClick={() => void signOut()}>
+          <LogOut className="mr-1.5 size-4" /> Log out
         </Button>
       </SectionCard>
     </AdminLayout>

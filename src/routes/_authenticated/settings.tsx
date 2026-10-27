@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTheme, type Theme } from "@/lib/theme";
+import { useAdminSignOut } from "@/lib/admin-auth";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/settings")({

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { getExternalSupabase } from "@/lib/external-supabase";
+import { isAdminRole, sanitizeRedirectPath } from "@/lib/admin-auth";
 import {
   Dialog,
   DialogContent,
@@ -17,7 +18,19 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
+type LoginSearch = { redirect?: string | undefined; reason?: string | undefined };
+
+const reasonMessages: Record<string, string> = {
+  network: "Could not reach the sign-in service. Check your connection and try again.",
+  not_admin: "This account does not have administrator access.",
+  no_profile: "No admin profile exists for this account. Contact the society administrator.",
+};
+
 export const Route = createFileRoute("/login")({
+  validateSearch: (search: Record<string, unknown>): LoginSearch => ({
+    redirect: typeof search.redirect === "string" ? search.redirect : undefined,
+    reason: typeof search.reason === "string" ? search.reason : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Admin Sign In — DairyLink" },
@@ -37,10 +50,11 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("admin@dairylink.in");
+  const { redirect: redirectTarget, reason } = Route.useSearch();
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(reason ? (reasonMessages[reason] ?? null) : null);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -52,13 +66,41 @@ function LoginPage() {
     setLoading(true);
     void (async () => {
       try {
-        const { error: authError } = await getExternalSupabase().auth.signInWithPassword({ email, password });
+        const supabase = getExternalSupabase();
+        const { error: authError } = await supabase.auth.signInWithPassword({ email, password });
         if (authError) {
           setError(authError.message);
           return;
         }
+        // getUser() revalidates the session with the Auth server before trusting it.
+        const { data: userData, error: userError } = await supabase.auth.getUser();
+        const user = userData?.user;
+        if (userError || !user) {
+          setError("Signed in, but the account could not be verified. Try again.");
+          return;
+        }
+        const { data: profile, error: profileError } = await supabase
+          .schema("public")
+          .from("profiles")
+          .select("id, full_name, role")
+          .eq("id", user.id)
+          .single();
+        if (profileError && profileError.code !== "PGRST116") {
+          setError("Could not load your profile. Check your connection and try again.");
+          return;
+        }
+        if (!profile) {
+          await supabase.auth.signOut();
+          setError(reasonMessages["no_profile"]!);
+          return;
+        }
+        if (!isAdminRole(profile.role)) {
+          await supabase.auth.signOut();
+          setError(reasonMessages["not_admin"]!);
+          return;
+        }
         toast.success("Signed in", { description: "Welcome back to DairyLink Admin." });
-        navigate({ to: "/" });
+        navigate({ to: sanitizeRedirectPath(redirectTarget) });
       } catch (err) {
         setError(err instanceof Error ? err.message : "Sign in failed. Check your connection and try again.");
       } finally {

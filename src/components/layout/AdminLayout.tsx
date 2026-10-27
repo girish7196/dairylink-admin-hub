@@ -32,6 +32,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/lib/theme";
+import { useAdminProfile, useAdminSignOut } from "@/lib/admin-auth";
 import { notifications } from "@/data/demo";
 import { cn } from "@/lib/utils";
 
@@ -120,6 +121,16 @@ function ThemeToggle() {
 
 export function AdminLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
+  const profile = useAdminProfile();
+  const signOut = useAdminSignOut();
+  const displayName = profile.full_name || "Admin";
+  const initials =
+    displayName
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part.charAt(0).toUpperCase())
+      .join("") || "AD";
 
   return (
     <div className="min-h-screen bg-background">
@@ -131,13 +142,14 @@ export function AdminLayout({ children }: { children: ReactNode }) {
           <NavLinks />
         </div>
         <div className="border-t p-3">
-          <Link
-            to="/login"
-            className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
+          <button
+            type="button"
+            onClick={() => void signOut()}
+            className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left text-sm font-medium text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive"
           >
             <LogOut className="size-4.5" />
             Log out
-          </Link>
+          </button>
         </div>
       </aside>
 
@@ -187,15 +199,15 @@ export function AdminLayout({ children }: { children: ReactNode }) {
               <DropdownMenuTrigger asChild>
                 <button className="ml-1 flex items-center gap-2 rounded-full border py-1 pl-1 pr-3 transition-colors hover:bg-accent">
                   <span className="flex size-7 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
-                    AD
+                    {initials}
                   </span>
-                  <span className="hidden text-sm font-medium sm:block">Anil Deshpande</span>
+                  <span className="hidden text-sm font-medium sm:block">{displayName}</span>
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-52">
                 <DropdownMenuLabel className="font-normal">
-                  <p className="text-sm font-medium">Anil Deshpande</p>
-                  <p className="text-xs text-muted-foreground">Dairy Administrator</p>
+                  <p className="text-sm font-medium">{displayName}</p>
+                  <p className="text-xs text-muted-foreground">Administrator</p>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
@@ -205,10 +217,11 @@ export function AdminLayout({ children }: { children: ReactNode }) {
                   <Link to="/notifications">Notifications</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/login" className="text-destructive">
-                    Log out
-                  </Link>
+                <DropdownMenuItem
+                  className="text-destructive"
+                  onSelect={() => void signOut()}
+                >
+                  Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
